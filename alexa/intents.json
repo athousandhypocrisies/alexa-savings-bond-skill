@@ -1,0 +1,162 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "savings bond wizard",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "getTheCurrentValue",
+                    "slots": [
+                        {
+                            "name": "month",
+                            "type": "AMAZON.Month"
+                        },
+                        {
+                            "name": "year",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER"
+                        },
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "about a {value} dollar bond from {month}  {year}",
+                        "what is the value of a {value} dollar bond issued in {month} {year}",
+                        "what is the price of an {value} on the {month} of {year}",
+                        "what is the value of a {value} dollar bond issued in {month} of {year} worth",
+                        "about a {value} dollar bond from {month} of {year} worth",
+                        "what a {value} dollar bond issued in {month} of {year} is worth",
+                        "what a {value} dollar bond from {month} of {year} is worth",
+                        "what is the value of a {value} dollar bond from  {month} of {year}",
+                        "what is the value of a {value} dollar bond from {month} of {year}",
+                        "what is the value of a {value} dollar bond issued in {month}  {year}",
+                        "what is the value of a {value} dollar bond issued in {month} of {year}",
+                        "how much a {value} dollar bond from {month} of {year} is worth",
+                        "how much is a {value} dollar bond from {month} of {year} worth",
+                        "about a {value} dollar bond from {month} of {year} ",
+                        "{value} dollar {month} of {year}",
+                        "about a {value} dollar bond from {month} of {year} is worth",
+                        "how much is a {value} dollar bond from {month} {year} worth",
+                        "what is the value of a {value} dollar bond issued on {month} {year}"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "getTheCurrentValue",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "month",
+                            "type": "AMAZON.Month",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "year",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {},
+                            "validations": [
+                                {
+                                    "type": "isLessThan",
+                                    "prompt": "Slot.Validation.1059537527829.124650410117.166591887221",
+                                    "value": "2030"
+                                },
+                                {
+                                    "type": "isGreaterThan",
+                                    "prompt": "Slot.Validation.1059537527829.124650410117.626096698353",
+                                    "value": "1991"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "value",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {},
+                            "validations": [
+                                {
+                                    "type": "isInSet",
+                                    "prompt": "Slot.Validation.1059537527829.172450708811.1007727669014",
+                                    "values": [
+                                        "100",
+                                        "200",
+                                        "25",
+                                        "5000",
+                                        "1000",
+                                        "10000",
+                                        "50",
+                                        "75",
+                                        "10"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Slot.Validation.1059537527829.172450708811.1007727669014",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Sorry, I must have misheard the dollar amount, can you tell me again?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1059537527829.124650410117.166591887221",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Please be sure the year is twenty twenty-one or earlier"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1059537527829.124650410117.626096698353",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Please be sure the year is later than nineteen ninety one"
+                    }
+                ]
+            }
+        ]
+    }
+}
